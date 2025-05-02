@@ -7,7 +7,6 @@
 </head>
 <body>
     Create
-    <a href="{{route('student.index')}}">Index</a>
     <div>   
         @if($errors->any())
             <ul>
@@ -16,31 +15,36 @@
                 @endforeach
             </ul>
         @endif
+    </div> 
+    <div>
+        @if(session()->has('success'))
+        <div>{{session('success')}}</div>
+        @endif
     </div>
-    <form method="post" action="{{route('student.store')}}">
+    <form method="post" action="{{route('student.update',['student'=>$student])}}">
         @csrf
-        @method('post')
+        @method('put')
             <div>
                     <lable>Name</lable>
-                    <input type="text" name="name" placeholder="name">
+                    <input type="text" name="name" placeholder="name" value="{{$student->name}}">
             </div>
 
             <div>
                     <lable>Dob</lable>
-                    <input type="text" name="dob" placeholder="dob">
+                    <input type="text" name="dob" placeholder="dob" value="{{$student->dob}}">
             </div>
             <div>
                     <lable>address</lable>
-                    <input type="text" name="address" placeholder="address">
+                    <input type="text" name="address" placeholder="address" value="{{$student->address}}">
             </div>
 
             <div>
                     <lable>email</lable>
-                    <input type="text" name="email" placeholder="email">
+                    <input type="text" name="email" placeholder="email" value="{{$student->email}}">
             </div>
             <div>
                     <lable>mobile</lable>
-                    <input type="text" name="mobile" placeholder="mobile">
+                    <input type="text" name="mobile" placeholder="mobile" value="{{$student->mobile}}">
             </div>
            
             <div>
